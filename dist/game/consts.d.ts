@@ -1,0 +1,8 @@
+export declare const startingAcres = 4;
+export declare const startingFarms = 2;
+export declare const startingGold = 1;
+export declare const startingHand = 4;
+export declare const gloryPointsToWin = 5;
+export declare const discoverExpansionCount = 2;
+export declare const discoverKingdomCount = 2;
+//# sourceMappingURL=consts.d.ts.map

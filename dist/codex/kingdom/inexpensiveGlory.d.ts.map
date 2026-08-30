@@ -1,0 +1,1 @@
+{"version":3,"file":"inexpensiveGlory.d.ts","sourceRoot":"","sources":["../../../src/codex/kingdom/inexpensiveGlory.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAGlD,qBAAa,gBAAiB,SAAQ,IAAI;IACtC,IAAI,SAAsB;IAC1B,MAAM,EAAE,MAAM,CAAa;IAC3B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAAoB;IAC5B,KAAK,UAAQ;IACP,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAGjC"}

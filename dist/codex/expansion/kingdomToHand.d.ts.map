@@ -1,0 +1,1 @@
+{"version":3,"file":"kingdomToHand.d.ts","sourceRoot":"","sources":["../../../src/codex/expansion/kingdomToHand.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAGlD,qBAAa,aAAc,SAAQ,IAAI;IACnC,IAAI,SAAgB;IACpB,MAAM,EAAE,MAAM,CAAe;IAC7B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,KAAK,UAAQ;IACb,QAAQ,SAAyD;IAC3D,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAMjC"}

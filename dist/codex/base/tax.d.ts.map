@@ -1,0 +1,1 @@
+{"version":3,"file":"tax.d.ts","sourceRoot":"","sources":["../../../src/codex/base/tax.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAIlD,qBAAa,GAAI,SAAQ,IAAI;IACzB,IAAI,SAAS;IACb,MAAM,EAAE,MAAM,CAAU;IACxB,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAA2B;IAC7B,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAIjC"}

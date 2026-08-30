@@ -1,0 +1,118 @@
+div {
+    font-family: monospace;
+    font-size: 11pt;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    min-height: 100%;
+}
+
+.bar-left {
+    width: 80%;
+    height: 100%;
+    padding: 4px;
+    padding-left: 8px;
+    overflow-wrap: normal;
+}
+
+.bar-right {
+    background-color: #d6e0f7;
+    flex-grow: 1;
+    min-height: 100%;
+}
+
+.main-display {
+    width: 100%;
+    padding: 4px;
+}
+
+.prompts {
+    width: 100%;
+    padding: 4px;
+}
+
+.logs {
+    width: 100%;
+    padding: 4px;
+    padding-left: 8px;
+}
+
+.green-text {
+    color: green;
+    font-weight: bold;
+}
+
+.gray-text {
+    color: rgb(175, 175, 175);
+}
+
+.gray-text span {
+    color: rgb(167, 167, 167) !important;
+}
+
+.red-text {
+    color: red;
+    font-weight: bold;
+}
+
+.cyan-text {
+    color: rgb(12, 133, 133);
+    font-weight: bold;
+}
+
+.name-text {
+    color: rgb(6, 103, 136);
+    font-weight: bold;
+}
+
+.burn-text {
+    color: rgb(255, 2, 2);
+    font-weight: bold;
+}
+
+.gold-text {
+    color: rgb(233, 167, 0);
+    font-weight: bold;
+}
+
+.food-text {
+    color: rgb(219, 70, 33);
+    font-weight: bold;
+}
+
+.farm-text {
+    color: rgb(105, 160, 3);
+    font-weight: bold;
+}
+
+.glory-text {
+    color: rgb(192, 20, 186);
+    font-weight: bold;
+}
+
+.land-text {
+    color: rgb(131, 86, 9);
+    font-weight: bold;
+}
+
+.discover-text {
+    color: rgb(77, 29, 167);
+    font-weight: bold;
+}
+
+.expansion-text {
+    color: rgb(4, 109, 4);
+    font-weight: bold;
+}
+
+.kingdom-text {
+    color: royalblue;
+    font-weight: bold;
+}

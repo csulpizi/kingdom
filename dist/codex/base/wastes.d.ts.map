@@ -1,0 +1,1 @@
+{"version":3,"file":"wastes.d.ts","sourceRoot":"","sources":["../../../src/codex/base/wastes.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAGlD,qBAAa,MAAO,SAAQ,IAAI;IAC5B,IAAI,SAAmB;IACvB,MAAM,EAAE,MAAM,CAAU;IACxB,IAAI,SAAK;IACT,IAAI,SAAK;IACT,MAAM,UAAQ;IACd,QAAQ,SAAuB;IACzB,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CACjC"}

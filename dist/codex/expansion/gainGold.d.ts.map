@@ -1,0 +1,1 @@
+{"version":3,"file":"gainGold.d.ts","sourceRoot":"","sources":["../../../src/codex/expansion/gainGold.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAIlD,qBAAa,QAAS,SAAQ,IAAI;IAC9B,IAAI,SAAe;IACnB,MAAM,EAAE,MAAM,CAAe;IAC7B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAAsB;IACxB,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAGjC"}

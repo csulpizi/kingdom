@@ -1,0 +1,97 @@
+import { startingAcres, startingGold, startingFarms, startingHand, } from "./consts.js";
+import { log } from "../logging.js";
+import { coloredString } from "../pretty.js";
+import { Collection } from "./collection.js";
+const state = {
+    food: 0,
+    gold: startingGold,
+    acres: startingAcres,
+    farms: startingFarms,
+    glory: 0,
+    turn: 1,
+};
+class GameObj {
+    get food() {
+        return state.food;
+    }
+    get gold() {
+        return state.gold;
+    }
+    get acres() {
+        return state.acres;
+    }
+    get farms() {
+        return state.farms;
+    }
+    get glory() {
+        return state.glory;
+    }
+    get turn() {
+        return state.turn;
+    }
+    set food(val) {
+        var diff = val - state.food;
+        if (diff > 0)
+            log(`+${diff} [FOOD]`);
+        if (diff < 0)
+            log(`${diff} [FOOD]`);
+        state.food = val;
+    }
+    set gold(val) {
+        var diff = val - state.gold;
+        if (diff > 0)
+            log(`+${diff} [GOLD]`);
+        if (diff < 0)
+            log(`${diff} [GOLD]`);
+        state.gold = val;
+    }
+    expireFood() {
+        if (state.food > 0) {
+            log(`${this.food} unused [FOOD] expired`);
+            this.food = 0;
+        }
+    }
+    convertFarmland() {
+        if (this.acres > 0) {
+            state.acres--;
+            state.farms++;
+            log("Converted 1 [ACRE] into 1 [FARM]");
+        }
+    }
+    gainGlory() {
+        log(`+1 [GLORY]`);
+        state.glory++;
+    }
+    gainFarm() {
+        log(`+1 [FARM]`);
+        state.farms++;
+    }
+    incTurn() {
+        state.turn++;
+        log(coloredString(`Turn ${this.turn}`, "cyan"));
+    }
+    firstTurn() {
+        Collection.draw(startingHand);
+        this.food = this.farms;
+    }
+    async endTurn() {
+        Game.expireFood();
+        Game.incTurn();
+        Collection.draw();
+        Game.convertFarmland();
+        Game.food = Game.farms;
+        for (var card of Collection.inPlay) {
+            card.turnStartWhileInPlay();
+        }
+    }
+    gainAcre(n) {
+        log(`+${n} [ACRE]`);
+        state.acres += n;
+    }
+    loseFarm(n) {
+        log(`-${n} [FARM]`);
+        state.farms -= n;
+    }
+}
+export const Game = new GameObj();
+//# sourceMappingURL=game.js.map
