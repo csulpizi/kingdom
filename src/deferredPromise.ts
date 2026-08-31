@@ -4,8 +4,8 @@ export class DeferredPromise<T> {
     reject: (reason: string) => void;
 
     constructor() {
-        this.resolve = (x: T) => {};
-        this.reject = (reason: string) => {};
+        this.resolve = (_: T) => {};
+        this.reject = (_: string) => {};
         this.promise = new Promise<T>((resolve, reject) => {
             this.resolve = resolve;
             this.reject = reject;

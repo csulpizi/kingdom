@@ -7,8 +7,8 @@ import { helpAction } from "./help.js";
 export async function promptPlayerActions(): Promise<void> {
     var prompt = new Prompt("Choose an action:");
     addCardActions(prompt);
-    prompt.addOption("a", "Describe board state", describeAction);
-    prompt.addOption("s", "Help", helpAction);
+    prompt.addOption("d", "Describe board state", describeAction);
+    prompt.addOption("h", "Help", helpAction);
     prompt.addOption("e", "End turn", endTurnAction);
     await prompt.invoke();
 }

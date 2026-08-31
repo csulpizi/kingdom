@@ -25,3 +25,8 @@ while (Game.glory < gloryPointsToWin) {
 MainDisplay.showDefaultHud();
 MainDisplay.writeLine("YOU WIN!");
 MainDisplay.writeLine("You won on turn " + Game.turn);
+
+MainDisplay.writeLine("");
+MainDisplay.writeLine("Press any key to play another game.");
+await waitForAnyKeyPress();
+window.location.reload();

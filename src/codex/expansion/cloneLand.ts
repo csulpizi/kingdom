@@ -1,5 +1,4 @@
 import { Card, Rarity } from "../../game/card.js";
-import { Collection } from "../../game/collection.js";
 
 export class CloneLand extends Card {
     name = "Frontier Town";
