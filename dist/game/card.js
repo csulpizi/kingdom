@@ -17,7 +17,8 @@ export class Card {
             log("[BURN]ing " + coloredName(this.name));
         if (val == "graveyard" && this.location == "hand")
             log("Discarding " + coloredName(this.name));
-        this.locationChangedIndex_ = globalCount();
+        if (this.location_ != val)
+            this.locationChangedIndex_ = globalCount();
         this.location_ = val;
     }
     get order() {

@@ -1,5 +1,6 @@
 import {
     gloryPointsToWin,
+    maxHandSize,
     startingAcres,
     startingFarms,
     startingGold,
@@ -27,48 +28,51 @@ async function showRules() {
     MainDisplay.writeLine(coloredString("Rules", "cyan"));
     MainDisplay.writeLine(coloredString("---", "gray"));
 
-    MainDisplay.writeLine(coloredString("<b>=== Goal ===</b>", "cyan"));
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(coloredString("<b>=== Goal ===</b>", "cyan"));
+    MainDisplay.writeNoLine(
         `<p>You win when you get ${gloryPointsToWin} [GLORY]. The goal of the game is to see how quickly you can reach the game end</p>`,
     );
 
     MainDisplay.writeLine(coloredString("<b>=== Resources ===</b>", "cyan"));
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         "<p>The main resources in the game are [GOLD] and [FOOD]. [GOLD] is gained by playing cards. [FOOD] is produced by [FARM]s. At the start of each turn, you gain 1 [FOOD] for each [FARM] you have. Any unused [FOOD] expires at the end of each turn.</p>",
     );
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         `<p>You start each game with ${startingGold} [GOLD], ${startingFarms} [FARM]s, and ${startingAcres} [ACRE]s. At the start of each turn, if you have any [ACRE]s left over, convert 1 [ACRE] into 1 [FARM].</p>`,
     );
 
     MainDisplay.writeLine(coloredString("<b>=== Cards ===</b>", "cyan"));
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         `<p>You start each game with a set of base cards. At the start of your first turn, draw ${startingHand} cards. Every turn thereafter draw 1 card.</p>`,
     );
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         `<p>Whenever you play a card, you pay the required [GOLD] and [FOOD] costs, then move the card into your graveyard. If the played card was a [LAND], it instead 'stays in play' until it is discarded or [BURN]ed. If the played card was marked [BURN], it instead is removed from the game</p>`,
     );
-    MainDisplay.writeLine(
-        `<p>If you would draw a card while the deck is empty, shuffle all of the cards in your graveyard back into your deck then draw</p>`,
+    MainDisplay.writeNoLine(
+        `<p>If you would draw a card while the deck is empty, shuffle all of the cards in your graveyard back into your deck then draw.</p>`,
     );
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
+        `You can have a maximum of ${maxHandSize} cards in your hand. If you draw a card while your hand is full, discard the first card in your hand.</p>`,
+    );
+    MainDisplay.writeNoLine(
         `<p>In order to gain [GLORY] you'll need to [DISCOVER] cards. There are [EXPANSION] cards and [KINGDOM] cards.</p>`,
     );
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         `<p>[EXPANSION] cards are better than your base cards. They give you access to better card draw, gold production, and allow you to [DISCOVER] [KINGDOM] cards.</p>`,
     );
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         `<p>[KINGDOM] cards are better than [EXPANSION] cards. They let you gain [GLORY] and provide even better effects than [EXPANSION] cards.</p>`,
     );
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(
         `<p>Certain cards let you [DISCOVER] either [EXPANSION] or [KINGDOM] cards. You are given the choice between 2 of those cards to add to your deck. When a card is [DISCOVER]ed, it goes into your graveyard unless otherwise specified.</p>`,
     );
 
     MainDisplay.writeLine(coloredString("<b>=== Hints ===</b>", "cyan"));
-    MainDisplay.writeLine(`<ul>`);
-    MainDisplay.writeLine(
+    MainDisplay.writeNoLine(`<ul>`);
+    MainDisplay.writeNoLine(
         `<li>[LAND]s provide incremental value, so discarding them to effects isn't necessarily a bad thing</li>`,
     );
-    MainDisplay.writeLine(`</ul>`);
+    MainDisplay.writeNoLine(`</ul>`);
     MainDisplay.writeLine("");
 
     MainDisplay.writeLine("Press any key to return");

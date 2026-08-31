@@ -24,7 +24,10 @@ class MainDisplayObj {
         this.writeLine("");
     }
     writeLine(message) {
-        element.innerHTML += "<br>" + pretty(message);
+        element.innerHTML += pretty(message) + "<br>";
+    }
+    writeNoLine(message) {
+        element.innerHTML += pretty(message);
     }
     clearContent() {
         element.innerHTML = "";

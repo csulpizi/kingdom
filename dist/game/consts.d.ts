@@ -5,4 +5,5 @@ export declare const startingHand = 4;
 export declare const gloryPointsToWin = 5;
 export declare const discoverExpansionCount = 2;
 export declare const discoverKingdomCount = 2;
+export declare const maxHandSize = 6;
 //# sourceMappingURL=consts.d.ts.map

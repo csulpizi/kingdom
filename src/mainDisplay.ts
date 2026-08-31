@@ -31,7 +31,11 @@ class MainDisplayObj {
     }
 
     writeLine(message: string) {
-        element.innerHTML += "<br>" + pretty(message);
+        element.innerHTML += pretty(message) + "<br>";
+    }
+
+    writeNoLine(message: string) {
+        element.innerHTML += pretty(message);
     }
 
     clearContent() {

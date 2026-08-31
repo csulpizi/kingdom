@@ -1,9 +1,13 @@
 import { DeferredPromise } from "../deferredPromise.js";
 import { log, logError } from "../logging.js";
-import { coloredName } from "../pretty.js";
+import { coloredName, coloredString } from "../pretty.js";
 import { noopPromise, randNth } from "../util.js";
 import { Card } from "./card.js";
-import { discoverExpansionCount, discoverKingdomCount } from "./consts.js";
+import {
+    discoverExpansionCount,
+    discoverKingdomCount,
+    maxHandSize,
+} from "./consts.js";
 import { Prompt } from "../prompt.js";
 
 class CollectionObj {
@@ -13,7 +17,7 @@ class CollectionObj {
     get hand(): Array<Card> {
         return this.cards
             .filter((c) => c.location == "hand")
-            .sort((c) => c.order);
+            .sort((c0, c1) => c0.order - c1.order);
     }
     get deck(): Array<Card> {
         return this.cards
@@ -28,17 +32,17 @@ class CollectionObj {
     get inPlay(): Array<Card> {
         return this.cards
             .filter((c) => c.location == "inplay")
-            .sort((c) => c.order);
+            .sort((c0, c1) => c0.order - c1.order);
     }
     get expansionPool(): Array<Card> {
         return this.cards
             .filter((c) => c.location == "reserve" && c.rarity == "expansion")
-            .sort((c) => c.order);
+            .sort((c0, c1) => c0.name.localeCompare(c1.name));
     }
     get kingdomPool(): Array<Card> {
         return this.cards
             .filter((c) => c.location == "reserve" && c.rarity == "kingdom")
-            .sort((c) => c.order);
+            .sort((c0, c1) => c0.name.localeCompare(c1.name));
     }
 
     draw(n: number = 1) {
@@ -48,6 +52,15 @@ class CollectionObj {
             card.location = "hand";
             log(`Drew ${coloredName(card.name)}`);
             this.draw(n - 1);
+            if (this.hand.length > maxHandSize) {
+                log(
+                    coloredString(
+                        "Your hand is full. Discarding the first card in your hand",
+                        "red",
+                    ),
+                );
+                (<Card>this.hand[0]).location = "graveyard";
+            }
         } else if (this.graveyard.length > 0) {
             for (var card of this.graveyard) {
                 card.location = "deck";
