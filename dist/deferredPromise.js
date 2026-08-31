@@ -3,8 +3,8 @@ export class DeferredPromise {
     resolve;
     reject;
     constructor() {
-        this.resolve = (x) => { };
-        this.reject = (reason) => { };
+        this.resolve = (_) => { };
+        this.reject = (_) => { };
         this.promise = new Promise((resolve, reject) => {
             this.resolve = resolve;
             this.reject = reject;

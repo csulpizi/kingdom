@@ -1,4 +1,6 @@
+import { Faction } from "../codex/factions.js";
 declare class GameObj {
+    faction: Faction | undefined;
     get food(): number;
     get gold(): number;
     get acres(): number;

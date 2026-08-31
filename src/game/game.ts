@@ -7,6 +7,7 @@ import {
 import { log } from "../logging.js";
 import { coloredString } from "../pretty.js";
 import { Collection } from "./collection.js";
+import { Faction } from "../codex/factions.js";
 
 const state = {
     food: 0,
@@ -18,6 +19,8 @@ const state = {
 };
 
 class GameObj {
+    faction: Faction | undefined;
+
     get food(): number {
         return state.food;
     }

@@ -11,6 +11,7 @@ const state = {
     turn: 1,
 };
 class GameObj {
+    faction;
     get food() {
         return state.food;
     }
