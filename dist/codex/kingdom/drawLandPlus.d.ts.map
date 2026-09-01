@@ -1,1 +1,0 @@
-{"version":3,"file":"drawLandPlus.d.ts","sourceRoot":"","sources":["../../../src/codex/kingdom/drawLandPlus.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAGlD,qBAAa,YAAa,SAAQ,IAAI;IAClC,IAAI,SAAmB;IACvB,MAAM,EAAE,MAAM,CAAa;IAC3B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAAY;IACpB,MAAM,UAAQ;IACR,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAGjC"}

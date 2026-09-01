@@ -1,1 +1,0 @@
-{"version":3,"file":"abundance.d.ts","sourceRoot":"","sources":["../../../src/codex/kingdom/abundance.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAIlD,qBAAa,SAAU,SAAQ,IAAI;IAC/B,IAAI,SAAe;IACnB,MAAM,EAAE,MAAM,CAAa;IAC3B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,KAAK,UAAQ;IACb,QAAQ,SAAuB;IACzB,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAGjC"}

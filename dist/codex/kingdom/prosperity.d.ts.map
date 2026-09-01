@@ -1,1 +1,0 @@
-{"version":3,"file":"prosperity.d.ts","sourceRoot":"","sources":["../../../src/codex/kingdom/prosperity.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAKlD,qBAAa,UAAW,SAAQ,IAAI;IAChC,IAAI,SAAgB;IACpB,MAAM,EAAE,MAAM,CAAa;IAC3B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAA6C;IACrD,KAAK,UAAQ;IACP,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAKjC"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"forge.d.ts","sourceRoot":"","sources":["../../../src/codex/expansion/forge.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAGlD,qBAAa,KAAM,SAAQ,IAAI;IAC3B,IAAI,SAAoB;IACxB,MAAM,EAAE,MAAM,CAAe;IAC7B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAAsE;IAC9E,MAAM,UAAQ;IACR,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;IAC9B,oBAAoB,IAAI,IAAI;CAI/B"}

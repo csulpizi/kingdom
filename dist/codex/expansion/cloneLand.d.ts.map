@@ -1,1 +1,0 @@
-{"version":3,"file":"cloneLand.d.ts","sourceRoot":"","sources":["../../../src/codex/expansion/cloneLand.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAGlD,qBAAa,SAAU,SAAQ,IAAI;IAC/B,IAAI,SAAmB;IACvB,MAAM,EAAE,MAAM,CAAe;IAC7B,IAAI,SAAK;IACT,IAAI,SAAK;IACT,QAAQ,SAAyC;IACjD,MAAM,UAAQ;IACR,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC;CAGjC"}

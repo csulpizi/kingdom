@@ -6,6 +6,7 @@ import { noopPromise } from "../../util.js";
 
 const addCost = 2;
 export class Expand extends Card {
+    addCost = 2;
     name = "Expand";
     rarity: Rarity = "base";
     food = 2;

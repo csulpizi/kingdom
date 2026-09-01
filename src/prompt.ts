@@ -59,9 +59,11 @@ export class Prompt {
     }
 
     async invoke(): Promise<void> {
-        var keys = this.options
-            .filter((obj) => obj.enabled)
-            .map((obj) => obj.key);
+        var keys: Array<{ key: string; enabled: boolean }> = this.options.map(
+            (obj) => {
+                return { key: obj.key, enabled: obj.enabled };
+            },
+        );
         this.drawOptions();
         var pressedKey = await waitForKeyPress(keys);
         this.Clear();
@@ -79,6 +81,9 @@ export class Prompt {
         }
         if (element) {
             element.innerHTML = html;
+        }
+
+        for (var { key, describe, enabled } of this.options) {
         }
     }
 

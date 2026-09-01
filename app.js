@@ -4,11 +4,14 @@ import { gloryPointsToWin } from "./dist/game/consts.js";
 import { MainDisplay } from "./dist/mainDisplay.js";
 import { coloredString } from "./dist/pretty.js";
 import { waitForAnyKeyPress } from "./dist/input.js";
-import { initialize } from "./dist/codex/initialize.js"; // FORCE inclusion of cards
+import { initialize as codexInitialize } from "./dist/codex/initialize.js"; // FORCE inclusion of cards
+import { initialize as mobileInitialize } from "./dist/mobile.js";
+
+mobileInitialize();
 
 await waitForAnyKeyPress();
 
-initialize();
+codexInitialize();
 Game.firstTurn();
 
 while (Game.glory < gloryPointsToWin) {

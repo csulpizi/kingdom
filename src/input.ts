@@ -1,31 +1,21 @@
-import { DeferredPromise } from "./deferredPromise.js";
+import {
+    isMobile,
+    waitForKeyPress as mobileKey,
+    waitForAnyKeyPress as mobileAny,
+} from "./mobile.js";
+import {
+    waitForKeyPress as desktopKey,
+    waitForAnyKeyPress as desktopAny,
+} from "./desktop.js";
 
-export function waitForKeyPress(keys: Array<string>): Promise<string> {
-    const abortController = new AbortController();
-    const promise = new DeferredPromise<string>();
-    document.addEventListener(
-        "keydown",
-        (e) => {
-            if (keys.includes(e.key)) {
-                promise.resolve(e.key);
-                abortController.abort();
-            }
-        },
-        { signal: abortController.signal },
-    );
-    return promise.promise;
+export function waitForKeyPress(
+    keys: Array<{ key: string; enabled: boolean }>,
+): Promise<string> {
+    if (isMobile()) return mobileKey(keys);
+    return desktopKey(keys.map((tup) => tup.key));
 }
 
-export function waitForAnyKeyPress(): Promise<string> {
-    const abortController = new AbortController();
-    const promise = new DeferredPromise<string>();
-    document.addEventListener(
-        "keydown",
-        (e) => {
-            promise.resolve(e.key);
-            abortController.abort();
-        },
-        { signal: abortController.signal },
-    );
-    return promise.promise;
+export function waitForAnyKeyPress(): Promise<void> {
+    if (isMobile()) return mobileAny();
+    return desktopAny();
 }

@@ -116,3 +116,40 @@ body {
     color: royalblue;
     font-weight: bold;
 }
+
+.mobile-footer {
+    background-color: powderblue;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    padding: 4px;
+    align-items: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mobile-button-enabled {
+    background-image: url("images/button.png");
+    width: 100px;
+    height: 100px;
+    margin: 8px;
+    text-align: center;
+    align-content: center;
+    font-size: xx-large;
+}
+
+.mobile-button-disabled {
+    color: rgb(65, 65, 65);
+    background-image: url("images/button_disabled.png");
+    width: 100px;
+    height: 100px;
+    margin: 8px;
+    text-align: center;
+    align-content: center;
+    font-size: xx-large;
+}

@@ -64,9 +64,9 @@ class GameObj {
         }
     }
 
-    gainGlory() {
-        log(`+1 [GLORY]`);
-        state.glory++;
+    gainGlory(n: number = 1) {
+        log(`+${n} [GLORY]`);
+        state.glory += n;
     }
 
     gainFarm() {
