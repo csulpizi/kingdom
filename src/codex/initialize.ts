@@ -3,7 +3,6 @@ import { Draw } from "./base/draw.js";
 import { Expand } from "./base/expand.js";
 import { GoldLand } from "./base/goldLand.js";
 import { Harvest } from "./base/harvest.js";
-import { Industry } from "./base/industry.js";
 import { Tax } from "./base/tax.js";
 import { Wastes } from "./base/wastes.js";
 
@@ -18,6 +17,7 @@ import { EminentDomain } from "./expansion/eminentDomain.js";
 import { ExpandKingdom } from "./expansion/expandKingdom.js";
 import { Forge } from "./expansion/forge.js";
 import { GainGold } from "./expansion/gainGold.js";
+import { Industry } from "./expansion/industry.js";
 import { GoldLandPlus } from "./expansion/goldLandPlus.js";
 import { InnovateLandDiscard } from "./expansion/innovateLandDiscard.js";
 import { KingdomToHand } from "./expansion/kingdomToHand.js";
@@ -35,12 +35,15 @@ import { Prosperity } from "./kingdom/prosperity.js";
 
 export function initialize() {
     Collection.add(new Draw());
+    Collection.add(new Draw());
     Collection.add(new Expand());
-    Collection.add(new GoldLand());
+    Collection.add(new Expand());
     Collection.add(new Harvest());
-    Collection.add(new Industry());
+    Collection.add(new Harvest());
+    Collection.add(new Tax());
     Collection.add(new Tax());
     Collection.add(new Wastes());
+    Collection.add(new GoldLand());
 
     Collection.add(new BurnDraw());
     Collection.add(new BurnLand());
@@ -54,6 +57,7 @@ export function initialize() {
     Collection.add(new Forge());
     Collection.add(new GainGold());
     Collection.add(new GoldLandPlus());
+    Collection.add(new Industry());
     Collection.add(new InnovateLandDiscard());
     Collection.add(new KingdomToHand());
     Collection.add(new Ritual());

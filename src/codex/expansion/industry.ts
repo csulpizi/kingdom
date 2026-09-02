@@ -4,7 +4,7 @@ import { Prompt } from "../../prompt.js";
 
 export class Industry extends Card {
     name = "Logging Roads";
-    rarity: Rarity = "base";
+    rarity: Rarity = "expansion";
     food = 1;
     gold = 0;
     describe = "Discard a [LAND] in play. Draw 2";

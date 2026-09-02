@@ -5,7 +5,7 @@ const n = 3;
 export class Kingswood extends Card {
     name = "Kingswood";
     rarity: Rarity = "kingdom";
-    food = 6;
+    food = 7;
     gold = 2;
     isLand = true;
     describe = `Gain 1 [GLORY]`;
