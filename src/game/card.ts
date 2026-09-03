@@ -1,6 +1,6 @@
 import { Game } from "./game.js";
-import { log as log } from "../logging.js";
-import { coloredName } from "../pretty.js";
+import { log as log } from "../display/logging.js";
+import { coloredName } from "../display/pretty.js";
 import { globalCount } from "../util.js";
 import { Collection } from "./collection.js";
 import * as header from "../display/header.js";

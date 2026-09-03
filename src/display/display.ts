@@ -1,13 +1,27 @@
 import { Card } from "../game/card.js";
-import { pretty } from "../pretty.js";
+import { pretty } from "./pretty.js";
 import { cardElement } from "./cardView.js";
 
 const mainDisplay = document.getElementsByName("maindisplay").item(0);
+var transientDisplay = mainDisplay;
+
+export function stash() {
+    transientDisplay = <HTMLElement>mainDisplay.cloneNode();
+    mainDisplay.parentElement?.appendChild(transientDisplay);
+    mainDisplay.hidden = true;
+    clear();
+}
+
+export function stashPop() {
+    transientDisplay.remove();
+    transientDisplay = mainDisplay;
+    mainDisplay.hidden = false;
+}
 
 export function showMessage(txt: string) {
     const node = document.createElement("span");
     node.innerHTML = pretty(txt);
-    mainDisplay.appendChild(node);
+    transientDisplay.appendChild(node);
 }
 
 export function showOptions(
@@ -23,7 +37,7 @@ export function showOptions(
         if (!isDud) item.addEventListener("click", (_) => onClick());
         list.appendChild(item);
     }
-    mainDisplay.appendChild(list);
+    transientDisplay.appendChild(list);
 }
 
 export function showCards(
@@ -42,9 +56,9 @@ export function showCards(
         if (!isDud) item.addEventListener("click", (_) => onClick());
         list.appendChild(item);
     }
-    mainDisplay.appendChild(list);
+    transientDisplay.appendChild(list);
 }
 
 export function clear() {
-    mainDisplay.innerHTML = "";
+    transientDisplay.innerHTML = "";
 }

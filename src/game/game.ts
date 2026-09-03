@@ -3,10 +3,11 @@ import {
     startingGold,
     startingFarms,
     startingHand,
+    gloryPointsToWin,
 } from "./consts.js";
-import { log } from "../logging.js";
+import { log } from "../display/logging.js";
 import { Collection } from "./collection.js";
-import { turnString } from "../pretty.js";
+import { turnString } from "../display/pretty.js";
 
 const state = {
     food: 0,
@@ -66,7 +67,7 @@ class GameObj {
 
     gainGlory(n: number = 1) {
         log(`+${n} [GLORY]`);
-        state.glory += n;
+        state.glory = Math.min(state.glory + n, gloryPointsToWin);
     }
 
     gainFarm() {

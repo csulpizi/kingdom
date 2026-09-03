@@ -1,6 +1,6 @@
 import { DeferredPromise } from "../deferredPromise.js";
-import { log, logError } from "../logging.js";
-import { coloredName, errorSpan } from "../pretty.js";
+import { log, logError } from "../display/logging.js";
+import { coloredName, errorSpan } from "../display/pretty.js";
 import { noopPromise, randNth } from "../util.js";
 import { Card } from "./card.js";
 import {

@@ -1,3 +1,5 @@
+import * as help from "../actions/helpMenu.js";
+import * as inspect from "../actions/inspectDeck.js";
 import { Collection } from "../game/collection.js";
 import { gloryPointsToWin } from "../game/consts.js";
 import { Game } from "../game/game.js";
@@ -12,9 +14,31 @@ const stats: Array<[string, () => number]> = [
     ["graveyard", () => Collection.graveyard.length],
 ];
 
+export function initialize() {
+    inspect.initialize();
+    help.initialize();
+}
+
+var stashedVisibility = false;
+export function stash() {
+    const statElement = <HTMLElement>document.getElementsByName("stats")[0];
+    stashedVisibility = !statElement.hidden;
+    statElement.hidden = true;
+}
+
+export function stashPop() {
+    const statElement = <HTMLElement>document.getElementsByName("stats")[0];
+    statElement.hidden = !stashedVisibility;
+}
+
 export function show() {
     const statElement = <HTMLElement>document.getElementsByName("stats")[0];
     statElement.hidden = false;
+}
+
+export function hide() {
+    const statElement = <HTMLElement>document.getElementsByName("stats")[0];
+    statElement.hidden = true;
 }
 
 export function refresh() {

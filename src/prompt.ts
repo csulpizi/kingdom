@@ -1,7 +1,7 @@
 import { DeferredPromise } from "./deferredPromise.js";
 import { asInline } from "./display/cardView.js";
 import {
-    clear,
+    clear as clearDisplay,
     showCards,
     showMessage,
     showOptions,
@@ -32,8 +32,8 @@ export class Prompt {
         this.message = message;
     }
 
-    draw() {
-        clear();
+    draw(clear: boolean) {
+        if (clear) clearDisplay();
         showMessage(this.message);
         showCards(this.fullScalecards);
         showOptions(this.options);
@@ -99,8 +99,8 @@ export class Prompt {
         }
     }
 
-    async invoke(): Promise<void> {
-        this.draw();
+    async invoke(clear: boolean = true): Promise<void> {
+        this.draw(clear);
         return this.deferred.promise;
     }
 }

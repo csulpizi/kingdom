@@ -1,5 +1,5 @@
 import { Card } from "../game/card.js";
-import { pretty, nFood, nGold, dudSpan, greySpan } from "../pretty.js";
+import { pretty, nFood, nGold, dudSpan, greySpan } from "./pretty.js";
 
 //FIXME: Display 'land'
 export function cardElement(card: Card, isDud: boolean, dudReason: string) {
@@ -18,6 +18,7 @@ export function cardElement(card: Card, isDud: boolean, dudReason: string) {
         conditionalAddTextNode(element, txt);
     }
     element.style.backgroundImage = `url("images/${card.art}.png")`;
+    element.setAttribute("rarityColor", card.rarity);
     return element;
 }
 

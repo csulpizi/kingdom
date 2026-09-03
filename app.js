@@ -1,33 +1,16 @@
-import { promptPlayerActions } from "./dist/actions/router.js";
+import { promptPlayerActions } from "./dist/actions/gameRouter.js";
 import { Game } from "./dist/game/game.js";
 import { gloryPointsToWin } from "./dist/game/consts.js";
-import { Prompt } from "./dist/prompt.js";
 import * as header from "./dist/display/header.js";
 import * as landsInPlay from "./dist/display/landsInPlay.js";
 import * as display from "./dist/display/display.js";
 import * as codex from "./dist/codex/initialize.js";
+import { showMainMenu } from "./dist/actions/mainMenu.js";
 
 codex.initialize();
+header.initialize();
 
-var gameStarted = false;
-var message = "Welcome";
-while (!gameStarted) {
-    const introPrompt = new Prompt(message);
-    introPrompt.addOption("Start game", false, () => {
-        gameStarted = true;
-    });
-    introPrompt.addOption("How to play", false, () => {
-        message = "not implemented yet sorry";
-    });
-    introPrompt.addOption("Glossary", false, () => {
-        message = "not implemented yet sorry";
-    });
-    introPrompt.addOption("Show all cards", false, () => {
-        message = "not implemented yet sorry";
-    });
-
-    await introPrompt.invoke();
-}
+await showMainMenu();
 
 Game.firstTurn();
 header.show();
