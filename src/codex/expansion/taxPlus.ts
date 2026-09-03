@@ -7,7 +7,7 @@ const nDraw = 1;
 export class taxPlus extends Card {
     name = "Tithes";
     rarity: Rarity = "expansion";
-    food = 3;
+    food = 2;
     gold = 0;
     describe = `Gain ${nGold} [GOLD]. Draw ${nDraw}`;
     async resolve(): Promise<void> {

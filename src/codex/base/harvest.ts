@@ -9,6 +9,12 @@ export class Harvest extends Card {
     gold = 0;
     describe = "Gain 1 [GOLD] per [LAND] in play";
     art = "harvest";
+    protected gateKeep(): { playable: boolean; reason: string } {
+        return {
+            playable: Collection.inPlay.length > 0,
+            reason: "No [LAND]s in play",
+        };
+    }
     async resolve(): Promise<void> {
         Game.gold += Collection.inPlay.length;
     }

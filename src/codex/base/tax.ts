@@ -1,6 +1,7 @@
 import { Card, Rarity } from "../../game/card.js";
 import { Collection } from "../../game/collection.js";
 import { Game } from "../../game/game.js";
+import { Prompt } from "../../prompt.js";
 
 export class Tax extends Card {
     name = "Tax";

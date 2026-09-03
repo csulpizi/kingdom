@@ -1,4 +1,6 @@
 import { Collection } from "../game/collection.js";
+
+import { DiscardLand } from "./base/discardLand.js";
 import { Draw } from "./base/draw.js";
 import { Expand } from "./base/expand.js";
 import { GoldLand } from "./base/goldLand.js";
@@ -38,10 +40,10 @@ export function initialize() {
     Collection.add(new Draw());
     Collection.add(new Expand());
     Collection.add(new Expand());
-    Collection.add(new Harvest());
-    Collection.add(new Harvest());
     Collection.add(new Tax());
     Collection.add(new Tax());
+    Collection.add(new Harvest());
+    Collection.add(new DiscardLand());
     Collection.add(new Wastes());
     Collection.add(new GoldLand());
 
