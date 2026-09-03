@@ -7,6 +7,7 @@ export class DrawPlus extends Card {
     food = 3;
     gold = 0;
     describe = "Draw 3";
+    art = "galleons";
     async resolve(): Promise<void> {
         Collection.draw(3);
     }

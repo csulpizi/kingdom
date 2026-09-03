@@ -11,19 +11,20 @@ export class Expand extends Card {
     food = 2;
     gold = 2;
     describe = `[DISCOVER] an [EXPANSION] card. Spend ${this.addCost} more [GOLD]: add that card into your hand`;
+    art = "expand";
     async resolve(): Promise<void> {
         var card = await Collection.discoverExpansionCards();
         if (card && Game.gold >= this.addCost) {
             var prompt = new Prompt(
                 `Add the card to your hand for ${this.addCost}?:`,
             );
-            prompt.addOption("1", "Yes", async () => {
+            prompt.addOption("Yes", false, async () => {
                 Game.gold -= this.addCost;
                 if (card) {
                     card.location = "hand";
                 }
             });
-            prompt.addOption("2", "No", noopPromise);
+            prompt.addOption("No", false, noopPromise);
             await prompt.invoke();
         }
     }

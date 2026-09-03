@@ -1,20 +1,22 @@
 import { Game } from "./game.js";
 import { log as log } from "../logging.js";
-import { coloredName, nFood, nGold, pretty } from "../pretty.js";
+import { coloredName } from "../pretty.js";
 import { globalCount } from "../util.js";
-import { MainDisplay } from "../mainDisplay.js";
 import { Collection } from "./collection.js";
+import * as header from "../display/header.js";
+import * as landsinplay from "../display/landsInPlay.js";
 
 export abstract class Card {
     abstract name: string;
     private location_: Location = "reserve";
     private locationChangedIndex_ = 0;
     abstract rarity: Rarity;
-    protected abstract food: number;
-    protected abstract gold: number;
-    protected abstract describe: string;
-    protected burns: boolean = false;
-    protected isLand: boolean = false;
+    abstract food: number;
+    abstract gold: number;
+    abstract describe: string;
+    abstract art: string;
+    burns: boolean = false;
+    isLand: boolean = false;
 
     get location(): Location {
         return this.location_;
@@ -53,7 +55,8 @@ export abstract class Card {
         this.location = "stack";
         Game.gold -= this.gold;
         Game.food -= this.food;
-        MainDisplay.showDefaultHud(); // refresh to show updated resources
+        header.refresh(); // refresh to show updated resources
+        landsinplay.clear(); // for future actions related to this card, hide the lands in play
         await this.resolve();
         if (this.isLand) this.location = "inplay";
         else if (this.burns) this.location = "burn";
@@ -64,18 +67,6 @@ export abstract class Card {
         const clone = new (Object.getPrototypeOf(this).constructor)();
         Collection.add(clone);
         return clone;
-    }
-
-    toString(): string {
-        const landEmbed = this.isLand ? " ([LAND])" : "";
-        const costEmbed =
-            nFood(this.food) +
-            (this.food > 0 && this.gold > 0 ? " " : "") +
-            nGold(this.gold);
-        const burnEmbed = this.burns ? " - [BURN]" : "";
-        return pretty(
-            `${coloredName(this.name)}${landEmbed} - ${costEmbed} - ${this.describe}${burnEmbed}`,
-        );
     }
 }
 

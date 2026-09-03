@@ -5,8 +5,8 @@ import {
     startingHand,
 } from "./consts.js";
 import { log } from "../logging.js";
-import { coloredString } from "../pretty.js";
 import { Collection } from "./collection.js";
+import { turnString } from "../pretty.js";
 
 const state = {
     food: 0,
@@ -76,7 +76,7 @@ class GameObj {
 
     incTurn() {
         state.turn++;
-        log(coloredString(`Turn ${this.turn}`, "cyan"));
+        log(turnString(`Turn ${this.turn}`));
     }
 
     firstTurn() {

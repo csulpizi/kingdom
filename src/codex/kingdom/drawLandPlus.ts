@@ -11,4 +11,5 @@ export class DrawLandPlus extends Card {
     async resolve(): Promise<void> {
         Collection.draw(2);
     }
+    art = "port";
 }

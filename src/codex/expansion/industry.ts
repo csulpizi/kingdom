@@ -8,6 +8,7 @@ export class Industry extends Card {
     food = 1;
     gold = 0;
     describe = "Discard a [LAND] in play. Draw 2";
+    art = "logging";
     protected gateKeep(): { playable: boolean; reason: string } {
         return {
             playable: Collection.inPlay.length > 0,
@@ -16,7 +17,7 @@ export class Industry extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to discard:");
-        prompt.addCards(Collection.inPlay, async (card) => {
+        prompt.addInlineCards(Collection.inPlay, async (card) => {
             card.location = "graveyard";
         });
         await prompt.invoke();

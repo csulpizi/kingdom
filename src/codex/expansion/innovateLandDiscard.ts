@@ -9,6 +9,7 @@ export class InnovateLandDiscard extends Card {
     gold = 0;
     describe =
         "Discard a [LAND] in play. [DISCOVER] an [EXPANSION] card and add it to your hand";
+    art = "deforest";
     protected gateKeep(): { playable: boolean; reason: string } {
         return {
             playable: Collection.inPlay.length > 0,
@@ -17,7 +18,7 @@ export class InnovateLandDiscard extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to discard:");
-        prompt.addCards(Collection.inPlay, async (card) => {
+        prompt.addInlineCards(Collection.inPlay, async (card) => {
             card.location = "graveyard";
         });
         await prompt.invoke();

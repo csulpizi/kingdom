@@ -8,6 +8,7 @@ export class GainGold extends Card {
     food = 3;
     gold = 0;
     describe = `Gain ${n} [GOLD]`;
+    art = "symposium";
     async resolve(): Promise<void> {
         Game.gold += n;
     }

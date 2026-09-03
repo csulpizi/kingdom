@@ -8,6 +8,7 @@ export class KingdomToHand extends Card {
     gold = 4;
     burns = true;
     describe = `[DISCOVER] a [KINGDOM] card and add it to your hand`;
+    art = "revolution";
     async resolve(): Promise<void> {
         var card = await Collection.discoverKingdomCards();
         if (card) {

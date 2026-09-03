@@ -8,6 +8,7 @@ export class Forge extends Card {
     gold = 0;
     describe = `While in play, lose 1 [FOOD] and gain 1 [GOLD] at the start turn`;
     isLand = true;
+    art = "forge";
     async resolve(): Promise<void> {}
     turnStartWhileInPlay(): void {
         Game.food--;

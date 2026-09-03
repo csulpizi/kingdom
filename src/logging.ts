@@ -1,4 +1,4 @@
-import { coloredString, pretty } from "./pretty.js";
+import { errorSpan, pretty } from "./pretty.js";
 
 const element = document.getElementsByName("logs").item(0);
 const logs: Array<string> = [];
@@ -13,8 +13,7 @@ function appendLog(message: string) {
 }
 
 function redraw() {
-    element.innerHTML =
-        '<span class="green-text">Logs</span><br><span class="gray-text">---</span>';
+    element.innerHTML = '<span class="green-text"><b>Logs</b></span><br>';
     for (var log of logs) {
         element.innerHTML += "<br>" + log;
     }
@@ -25,5 +24,5 @@ export function log(message: string) {
 }
 
 export function logError(message: string) {
-    appendLog(coloredString(message, "red"));
+    appendLog(errorSpan(message));
 }

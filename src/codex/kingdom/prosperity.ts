@@ -10,6 +10,7 @@ export class Prosperity extends Card {
     gold = 3;
     describe = `Gain ${n} [FOOD]. Draw 2. Gain 1 [FARM]`;
     burns = true;
+    art = "prosperity";
     async resolve(): Promise<void> {
         Game.food += n;
         Collection.draw(2);

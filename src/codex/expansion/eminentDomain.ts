@@ -7,6 +7,7 @@ export class EminentDomain extends Card {
     rarity: Rarity = "expansion";
     food = 2;
     gold = 3;
+    art = "eminentdomain";
     describe = "Discard a [LAND] in play. [DISCOVER] a [KINGDOM] card";
     protected gateKeep(): { playable: boolean; reason: string } {
         return {
@@ -16,7 +17,7 @@ export class EminentDomain extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to discard:");
-        prompt.addCards(Collection.inPlay, async (card) => {
+        prompt.addInlineCards(Collection.inPlay, async (card) => {
             card.location = "graveyard";
         });
         await prompt.invoke();

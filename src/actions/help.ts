@@ -1,3 +1,4 @@
+/*
 import {
     gloryPointsToWin,
     maxHandSize,
@@ -118,3 +119,4 @@ async function showKeywords() {
     await waitForAnyKeyPress();
     await helpAction();
 }
+*/

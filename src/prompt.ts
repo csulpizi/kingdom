@@ -1,95 +1,106 @@
+import { DeferredPromise } from "./deferredPromise.js";
+import { asInline } from "./display/cardView.js";
+import {
+    clear,
+    showCards,
+    showMessage,
+    showOptions,
+} from "./display/display.js";
 import { Card } from "./game/card.js";
-import { waitForKeyPress } from "./input.js";
-import { coloredString, pretty } from "./pretty.js";
-import { noopPromise } from "./util.js";
-
-const element = document.getElementsByName("prompts").item(0);
 
 export class Prompt {
-    message: string;
-    options: Array<{
-        key: string;
-        describe: string;
-        enabled: boolean;
-        callback: () => Promise<void>;
+    private message: string;
+    private deferred = new DeferredPromise<void>();
+    private options: Array<{
+        text: string;
+        isDud: boolean;
+        onClick: () => void;
     }> = [];
+    private fullScalecards: Array<{
+        card: Card;
+        isDud: boolean;
+        dudReason: string;
+        onClick: () => void;
+    }> = [];
+
+    protected async resolve(promise: Promise<void>) {
+        await promise;
+        this.deferred.resolve();
+    }
 
     constructor(message: string) {
         this.message = message;
     }
 
-    addCards(
-        cards: Array<Card>,
-        callback: (card: Card) => Promise<void>,
-        enable?: (card: Card) => { playable: boolean; reason: string },
-    ) {
-        for (var i = 0; i < cards.length; i++) {
-            const card = <Card>cards[i];
-            var playable = true;
-            var reason = "";
-            if (enable) {
-                var tup = enable(card);
-                playable = tup.playable;
-                reason = tup.reason;
-            }
-            if (playable) {
-                this.addOption((i + 1).toString(), card.toString(), () =>
-                    callback(card),
-                );
-            } else {
-                this.addDud(
-                    (i + 1).toString(),
-                    `(${pretty(reason)}) ${card.toString()}`,
-                );
-            }
-        }
+    draw() {
+        clear();
+        showMessage(this.message);
+        showCards(this.fullScalecards);
+        showOptions(this.options);
     }
 
-    addOption(key: string, describe: string, callback: () => Promise<void>) {
-        this.options.push({ key, describe, callback, enabled: true });
-    }
-
-    addDud(key: string, describe: string) {
+    addOption(text: string, isDud: boolean, callback: () => Promise<void>) {
+        const onClick: () => void = () => {
+            const promise = callback();
+            this.resolve(promise);
+        };
         this.options.push({
-            key,
-            describe,
-            callback: noopPromise,
-            enabled: false,
+            text,
+            isDud,
+            onClick,
         });
     }
 
-    async invoke(): Promise<void> {
-        var keys: Array<{ key: string; enabled: boolean }> = this.options.map(
-            (obj) => {
-                return { key: obj.key, enabled: obj.enabled };
-            },
-        );
-        this.drawOptions();
-        var pressedKey = await waitForKeyPress(keys);
-        this.Clear();
-        await this.options.find((obj) => obj.key == pressedKey)?.callback();
-    }
-
-    drawOptions() {
-        var html = pretty(this.message) + "<br>";
-        for (var { key, describe, enabled } of this.options) {
-            var s = `${key} - ${describe}<br>`;
-            if (!enabled) {
-                s = coloredString(s, "gray");
+    addInlineCards(
+        cards: Array<Card>,
+        callback: (card: Card) => Promise<void>,
+        enable?: (card: Card) => { dud: boolean; reason: string },
+    ) {
+        for (var i = 0; i < cards.length; i++) {
+            const card = <Card>cards[i];
+            var isDud = false;
+            var dudReason = "";
+            if (enable) {
+                var tup = enable(card);
+                isDud = tup.dud;
+                dudReason = tup.reason;
             }
-            html += s;
-        }
-        if (element) {
-            element.innerHTML = html;
-        }
-
-        for (var { key, describe, enabled } of this.options) {
+            const onClick: () => void = () => {
+                const promise = callback(card);
+                this.resolve(promise);
+            };
+            this.options.push({
+                text: asInline(card, isDud, dudReason),
+                isDud,
+                onClick,
+            });
         }
     }
 
-    Clear() {
-        if (element) {
-            element.innerHTML = "";
+    addFullscaleCards(
+        cards: Array<Card>,
+        callback: (card: Card) => Promise<void>,
+        enable?: (card: Card) => { dud: boolean; reason: string },
+    ) {
+        for (var i = 0; i < cards.length; i++) {
+            const card = <Card>cards[i];
+            var isDud = false;
+            var dudReason = "";
+            if (enable) {
+                var tup = enable(card);
+                isDud = tup.dud;
+                dudReason = tup.reason;
+            }
+            const onClick: () => void = () => {
+                const promise = callback(card);
+                this.resolve(promise);
+            };
+            this.fullScalecards.push({ card, isDud, dudReason, onClick });
         }
+    }
+
+    async invoke(): Promise<void> {
+        this.draw();
+        return this.deferred.promise;
     }
 }

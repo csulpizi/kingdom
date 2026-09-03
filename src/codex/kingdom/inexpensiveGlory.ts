@@ -9,6 +9,7 @@ export class InexpensiveGlory extends Card {
     gold = 4;
     describe = `Gain ${this.n} [GLORY]`;
     burns = true;
+    art = "coronation";
     async resolve(): Promise<void> {
         Game.gainGlory(this.n);
     }

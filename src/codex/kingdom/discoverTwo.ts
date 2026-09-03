@@ -7,6 +7,7 @@ export class DiscoverTwo extends Card {
     food = 2;
     gold = 3;
     describe = `[DISCOVER] two [EXPANSION] cards. Add them both to your hand`;
+    art = "imperialism";
     async resolve(): Promise<void> {
         var card = await Collection.discoverExpansionCards();
         if (card) {

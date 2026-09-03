@@ -7,6 +7,7 @@ export class Tax extends Card {
     rarity: Rarity = "base";
     food = 2;
     gold = 0;
+    art = "taxes";
     describe = "Gain 1 [GOLD]. Draw 1";
     async resolve(): Promise<void> {
         Game.gold++;

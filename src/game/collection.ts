@@ -1,6 +1,6 @@
 import { DeferredPromise } from "../deferredPromise.js";
 import { log, logError } from "../logging.js";
-import { coloredName, coloredString } from "../pretty.js";
+import { coloredName, errorSpan } from "../pretty.js";
 import { noopPromise, randNth } from "../util.js";
 import { Card } from "./card.js";
 import {
@@ -54,9 +54,8 @@ class CollectionObj {
             this.draw(n - 1);
             if (this.hand.length > maxHandSize) {
                 log(
-                    coloredString(
+                    errorSpan(
                         "Your hand is full. Discarding the first card in your hand",
-                        "red",
                     ),
                 );
                 (<Card>this.hand[0]).location = "graveyard";
@@ -119,12 +118,12 @@ class CollectionObj {
             log("[DISCOVER]ed " + coloredName(clone.name));
             output.resolve(clone);
         };
-        prompt.addCards(choices, cardCallback);
+        prompt.addFullscaleCards(choices, cardCallback);
         var cancelCallback = () => {
             output.resolve(null);
             return noopPromise();
         };
-        prompt.addOption("q", "Take nothing", cancelCallback);
+        prompt.addOption("Take nothing", false, cancelCallback);
         await prompt.invoke();
         return output.promise;
     }

@@ -8,6 +8,7 @@ export class Ritual extends Card {
     food = 0;
     gold = 2;
     describe = `Gain ${n} [FOOD]`;
+    art = "mercenaries";
     async resolve(): Promise<void> {
         Game.food += n;
     }

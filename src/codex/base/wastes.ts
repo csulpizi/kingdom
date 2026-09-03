@@ -7,6 +7,7 @@ export class Wastes extends Card {
     food = 1;
     gold = 0;
     isLand = true;
+    art = "barren";
     describe = "<i>*crickets*</i>";
     async resolve(): Promise<void> {}
 }

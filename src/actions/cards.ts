@@ -2,9 +2,12 @@ import { Collection } from "../game/collection.js";
 import { Prompt } from "../prompt.js";
 
 export function addCardActions(prompt: Prompt) {
-    prompt.addCards(
+    prompt.addFullscaleCards(
         Collection.hand,
         (card) => card.play(),
-        (card) => card.canPlay(),
+        (card) => {
+            const { playable, reason } = card.canPlay();
+            return { dud: !playable, reason };
+        },
     );
 }

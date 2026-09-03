@@ -10,6 +10,7 @@ export class ExpandKingdom extends Card {
     rarity: Rarity = "expansion";
     food = 2;
     gold = 4;
+    art = "ascend";
     describe = `[DISCOVER] a [KINGDOM] card. Spend ${addCost} more [GOLD]: add that card into your hand`;
     async resolve(): Promise<void> {
         var card = await Collection.discoverKingdomCards();
@@ -17,13 +18,13 @@ export class ExpandKingdom extends Card {
             var prompt = new Prompt(
                 `Add the card to your hand for ${addCost}?:`,
             );
-            prompt.addOption("1", "Yes", async () => {
+            prompt.addOption("Yes", false, async () => {
                 Game.gold -= addCost;
                 if (card) {
                     card.location = "hand";
                 }
             });
-            prompt.addOption("2", "No", noopPromise);
+            prompt.addOption("No", false, noopPromise);
             await prompt.invoke();
         }
     }

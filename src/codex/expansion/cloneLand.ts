@@ -7,6 +7,7 @@ export class CloneLand extends Card {
     gold = 0;
     describe = `Put a copy of this [LAND] into play`;
     isLand = true;
+    art = "frontiertown";
     async resolve(): Promise<void> {
         this.clone().location = "inplay";
     }

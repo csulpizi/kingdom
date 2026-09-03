@@ -14,9 +14,10 @@ export class Draw extends Card {
             reason: "You do not have any other cards in hand to discard",
         };
     }
+    art = "trade";
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a card to discard:");
-        prompt.addCards(
+        prompt.addInlineCards(
             Collection.hand.filter((c) => c != this),
             async (card) => {
                 card.location = "graveyard";

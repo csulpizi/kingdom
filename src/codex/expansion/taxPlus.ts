@@ -14,4 +14,5 @@ export class taxPlus extends Card {
         Game.gold += nGold;
         Collection.draw(nDraw);
     }
+    art = "tithes";
 }

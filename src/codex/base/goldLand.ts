@@ -7,6 +7,7 @@ export class GoldLand extends Card {
     food = 2;
     gold = 0;
     isLand = true;
+    art = "amberfields";
     describe = "Gain 1 [GOLD]";
     async resolve(): Promise<void> {
         Game.gold++;

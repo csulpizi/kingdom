@@ -17,9 +17,10 @@ export class BurnLand extends Card {
             reason: "You do not have any other cards in hand to [BURN]",
         };
     }
+    art = "stripmines";
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a card to [BURN]:");
-        prompt.addCards(
+        prompt.addInlineCards(
             Collection.hand.filter((c) => c != this),
             async (card) => {
                 card.location = "burn";

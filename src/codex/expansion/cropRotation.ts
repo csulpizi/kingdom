@@ -1,13 +1,14 @@
 import { Card, Rarity } from "../../game/card.js";
 import { Game } from "../../game/game.js";
 
-const nFarm = 2;
-const nAcre = 3;
+const nFarm = 4;
+const nAcre = 6;
 export class CropRotation extends Card {
     name = "Crop Rotation";
     rarity: Rarity = "expansion";
-    food = 1;
+    food = 2;
     gold = 0;
+    art = "crop_rotation";
     describe = `Lose ${nFarm} [FARM]s. Gain ${nAcre} [ACRE]s`;
     protected gateKeep(): { playable: boolean; reason: string } {
         return {

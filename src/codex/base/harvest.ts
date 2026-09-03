@@ -8,6 +8,7 @@ export class Harvest extends Card {
     food = 2;
     gold = 0;
     describe = "Gain 1 [GOLD] per [LAND] in play";
+    art = "harvest";
     async resolve(): Promise<void> {
         Game.gold += Collection.inPlay.length;
     }

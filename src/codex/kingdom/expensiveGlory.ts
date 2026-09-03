@@ -10,4 +10,5 @@ export class ExpensiveGlory extends Card {
     async resolve(): Promise<void> {
         Game.gainGlory();
     }
+    art = "tournament";
 }

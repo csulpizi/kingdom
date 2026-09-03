@@ -8,6 +8,7 @@ export class Kingswood extends Card {
     food = 7;
     gold = 2;
     isLand = true;
+    art = "kingswood";
     describe = `Gain 1 [GLORY]`;
     async resolve(): Promise<void> {
         Game.gainGlory();

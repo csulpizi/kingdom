@@ -8,6 +8,7 @@ export class DrawLand extends Card {
     gold = 0;
     describe = `Draw a card`;
     isLand = true;
+    art = "bustlingmarket";
     async resolve(): Promise<void> {
         Collection.draw();
     }

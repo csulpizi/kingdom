@@ -8,6 +8,7 @@ export class FiresOfIndustry extends Card {
     rarity: Rarity = "kingdom";
     food = 3;
     gold = 0;
+    art = "firesindustry";
     describe = `[BURN] two lands in play. Gain 1 [GLORY]`;
     protected gateKeep(): { playable: boolean; reason: string } {
         return {
@@ -17,12 +18,12 @@ export class FiresOfIndustry extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to [BURN]:");
-        prompt.addCards(Collection.inPlay, async (card) => {
+        prompt.addInlineCards(Collection.inPlay, async (card) => {
             card.location = "burn";
         });
         await prompt.invoke();
         prompt = new Prompt("Choose a second [LAND] to [BURN]:");
-        prompt.addCards(Collection.inPlay, async (card) => {
+        prompt.addInlineCards(Collection.inPlay, async (card) => {
             card.location = "burn";
         });
         await prompt.invoke();

@@ -9,6 +9,7 @@ export class Clearcut extends Card {
     food = 2;
     gold = 0;
     describe = `[BURN] a [LAND] in play. Gain 1 [FARM]`;
+    art = "clearcut";
     protected gateKeep(): { playable: boolean; reason: string } {
         return {
             playable: Collection.inPlay.length > 0,
@@ -17,7 +18,7 @@ export class Clearcut extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to [BURN]:");
-        prompt.addCards(Collection.inPlay, async (card) => {
+        prompt.addInlineCards(Collection.inPlay, async (card) => {
             card.location = "burn";
         });
         await prompt.invoke();
