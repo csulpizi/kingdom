@@ -80,6 +80,7 @@ class GameObj {
     }
 
     firstTurn() {
+        log(turnString(`Turn ${this.turn}`));
         Collection.draw(startingHand);
         this.food = this.farms;
     }

@@ -14,12 +14,7 @@
     <header class="topbar">
         <span class="brand">Kingdom</span>
     </header>
-
-    <svg class="icon" aria-hidden="true" focusable="false">
-        <use href="#i-burn"></use>
-    </svg>
-    <img class="icon" aria-hidden="true" focusable="false" src="food.svg" color="red"></svg>
-    <div class="stats" name="stats">
+    <div class="stats" name="stats" hidden>
         <div class="stat">
             Turn
             <span class="cyan-text" name="stat:turn">
@@ -59,6 +54,20 @@
             Glory
             <span class="glory-text" name="stat:glory">
                 ⬤○○○○
+            </span>
+        </div>
+        <div class="stat">
+            <img class="stat-icon" src="icons/deck.svg">
+            Deck
+            <span class="name-text" name="stat:deck">
+                4
+            </span>
+        </div>
+        <div class="stat">
+            <img class="stat-icon" src="icons/graveyard.svg">
+            Graveyard
+            <span class="name-text" name="stat:graveyard">
+                4
             </span>
         </div>
     </div>

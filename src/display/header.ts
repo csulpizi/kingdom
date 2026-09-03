@@ -1,3 +1,4 @@
+import { Collection } from "../game/collection.js";
 import { gloryPointsToWin } from "../game/consts.js";
 import { Game } from "../game/game.js";
 
@@ -7,7 +8,14 @@ const stats: Array<[string, () => number]> = [
     ["gold", () => Game.gold],
     ["farms", () => Game.farms],
     ["acres", () => Game.acres],
+    ["deck", () => Collection.deck.length],
+    ["graveyard", () => Collection.graveyard.length],
 ];
+
+export function show() {
+    const statElement = <HTMLElement>document.getElementsByName("stats")[0];
+    statElement.hidden = false;
+}
 
 export function refresh() {
     for (const [stat, getter] of stats) {

@@ -2,7 +2,6 @@ import { promptPlayerActions } from "./dist/actions/router.js";
 import { Game } from "./dist/game/game.js";
 import { gloryPointsToWin } from "./dist/game/consts.js";
 import { Prompt } from "./dist/prompt.js";
-import * as collection from "./dist/game/collection.js";
 import * as header from "./dist/display/header.js";
 import * as landsInPlay from "./dist/display/landsInPlay.js";
 import * as display from "./dist/display/display.js";
@@ -10,31 +9,28 @@ import * as codex from "./dist/codex/initialize.js";
 
 codex.initialize();
 
-// fixme
-const cards = [];
+var gameStarted = false;
+var message = "Welcome";
+while (!gameStarted) {
+    const introPrompt = new Prompt(message);
+    introPrompt.addOption("Start game", false, () => {
+        gameStarted = true;
+    });
+    introPrompt.addOption("How to play", false, () => {
+        message = "not implemented yet sorry";
+    });
+    introPrompt.addOption("Glossary", false, () => {
+        message = "not implemented yet sorry";
+    });
+    introPrompt.addOption("Show all cards", false, () => {
+        message = "not implemented yet sorry";
+    });
 
-for (const card of collection.Collection.deck) {
-    cards.push(card);
+    await introPrompt.invoke();
 }
-for (const card of collection.Collection.expansionPool) {
-    cards.push(card);
-}
-for (const card of collection.Collection.kingdomPool) {
-    cards.push(card);
-}
-
-const prompt = new Prompt("MSG");
-prompt.addFullscaleCards(
-    cards,
-    (_) => {},
-    () => {
-        return { dud: false, reason: "hello" };
-    },
-);
-await prompt.invoke();
 
 Game.firstTurn();
-
+header.show();
 while (Game.glory < gloryPointsToWin) {
     header.refresh();
     landsInPlay.refresh();
@@ -47,5 +43,5 @@ while (Game.glory < gloryPointsToWin) {
 landsInPlay.clear();
 header.refresh();
 display.clear();
-display.showMessage("YOU WIN!");
+display.showMessage("YOU WIN!<br>");
 display.showMessage("You won on turn " + Game.turn);

@@ -1,21 +1,15 @@
 import { errorSpan, pretty } from "./pretty.js";
 
 const element = document.getElementsByName("logs").item(0);
-const logs: Array<string> = [];
-const maxLogs = 50;
+const maxLogs = 30;
 
 function appendLog(message: string) {
-    logs.push(message);
-    if (logs.length > maxLogs) {
-        logs.shift();
-    }
-    redraw();
-}
-
-function redraw() {
-    element.innerHTML = '<span class="green-text"><b>Logs</b></span><br>';
-    for (var log of logs) {
-        element.innerHTML += "<br>" + log;
+    const log = document.createElement("div");
+    log.className = "log-entry";
+    log.innerHTML = message;
+    element.appendChild(log);
+    if (element.childElementCount > maxLogs) {
+        element.children[0]?.remove();
     }
 }
 

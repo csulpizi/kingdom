@@ -79,11 +79,11 @@ body {
 .stats {
     min-width: 0;
     padding: 6px;
-    gap: 10px;
 }
 
 .stat {
-    display: inline;
+    display: inline-flex;
+    gap: 4px;
     padding: 4px;
     padding-left: 8px;
     padding-right: 8px;
@@ -91,7 +91,8 @@ body {
     border-radius: 10px;
     background: var(--bg-elev);
     box-shadow: var(--shadow);
-    margin: 6px;
+    align-items: center;
+    margin-right: 4px;
 }
 
 .brand {
@@ -191,17 +192,14 @@ body {
 }
 
 .icon {
-    flex: 0 0 auto;
     width: 0.8em;
     height: 0.8em;
 
 }
 
 .stat-icon {
-    flex: 0 0 auto;
     width: 1em;
     height: 1em;
-    vertical-align: -.15em;
 
 }
 
@@ -209,6 +207,24 @@ body {
     width: 100%;
     padding: 4px;
     padding-left: 8px;
+}
+
+.log-entry {
+    width: 100%;
+    margin-bottom: 4px;
+    border-left: 4px solid;
+    border-color: rgb(0 0 0 / 0.0);
+    padding-left: 2px;
+}
+
+.log-entry:last-child {
+    border-left-color: var(--c-gold);
+}
+
+@media screen and (max-width: 950px) {
+    .bar-right {
+        display: none !important;
+    }
 }
 
 /* ===========
