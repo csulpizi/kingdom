@@ -170,6 +170,8 @@ body {
 .land-in-play,
 .option,
 .card,
+.card-expansion,
+.card-kingdom,
 .card-dud {
     padding: 9px 11px 10px;
     border: 1px solid var(--border);
@@ -185,6 +187,8 @@ body {
 }
 
 .card,
+.card-expansion,
+.card-kingdom,
 .card-dud {
     margin-top: 2px;
     width: 200px;
@@ -194,16 +198,23 @@ body {
 
 .card,
 .card-dud {
-    --rarity: attr(rarityColor);
-    border: if(style(--rarity: "expansion"): 2px solid var(--c-expansion);
-            style(--rarity: "kingdom"): 2px solid var(--c-kingdom);
-            else: 2px solid var(--border));
+    border: 2px solid var(--border);
+}
+
+.card-expansion {
+    border: 2px solid var(--c-expansion);
+}
+
+.card-kingdom {
+    border: 2px solid var(--c-kingdom);
 }
 
 .option:hover {
     border: 1px solid var(--border-hover);
 }
 
+.card-expansion:hover,
+.card-kingdom:hover,
 .card:hover {
     border: 2px solid var(--border-hover);
 }

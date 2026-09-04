@@ -8,7 +8,12 @@ export function cardElement(
     hotkey: string | undefined,
 ) {
     const element = document.createElement("div");
-    element.className = isDud ? "card-dud" : "card";
+
+    if (isDud) element.className = "card-dud";
+    else if (card.rarity == "expansion") element.className = "card-expansion";
+    else if (card.rarity == "kingdom") element.className = "card-kingdom";
+    else element.className = "card";
+
     for (const txt of [
         displayName(card),
         lineBreak,
@@ -22,7 +27,6 @@ export function cardElement(
         conditionalAddTextNode(element, txt);
     }
     element.style.backgroundImage = `url("images/${card.art}.png")`;
-    element.setAttribute("rarityColor", card.rarity);
 
     if (hotkey) {
         const hotkeyElement = document.createElement("div");
