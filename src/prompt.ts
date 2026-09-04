@@ -11,7 +11,7 @@ import { addHotkeyListener } from "./hotkeys.js";
 
 export class Prompt {
     private message: string;
-    private deferred = new DeferredPromise<void>();
+    private deferred = new DeferredPromise<() => Promise<void>>();
     private options: Array<{
         text: string;
         isDud: boolean;
@@ -26,16 +26,11 @@ export class Prompt {
         hotkey: string | undefined;
     }> = [];
 
-    protected async resolve(promise: Promise<void>) {
-        await promise;
-        this.deferred.resolve();
-    }
-
     constructor(message: string) {
         this.message = message;
     }
 
-    draw() {
+    private draw() {
         showMessage(this.message);
         showCards(this.fullScaleCards);
         showOptions(this.options);
@@ -47,10 +42,7 @@ export class Prompt {
         callback: () => Promise<void>,
         hotkey: string | undefined = undefined,
     ) {
-        const onClick: () => void = () => {
-            const promise = callback();
-            this.resolve(promise);
-        };
+        const onClick = () => this.deferred.resolve(callback);
         this.options.push({
             text,
             isDud,
@@ -74,10 +66,7 @@ export class Prompt {
                 isDud = tup.dud;
                 dudReason = tup.reason;
             }
-            const onClick: () => void = () => {
-                const promise = callback(card);
-                this.resolve(promise);
-            };
+            const onClick = () => this.deferred.resolve(() => callback(card));
             const hotkey = showHotKeys ? i + 1 + "" : undefined;
             this.options.push({
                 text: asInline(card, isDud, dudReason),
@@ -104,10 +93,7 @@ export class Prompt {
                 dudReason = tup.reason;
             }
             const hotkey = showHotKeys ? i + 1 + "" : undefined;
-            const onClick: () => void = () => {
-                const promise = callback(card);
-                this.resolve(promise);
-            };
+            const onClick = () => this.deferred.resolve(() => callback(card));
             this.fullScaleCards.push({
                 card,
                 isDud,
@@ -119,15 +105,14 @@ export class Prompt {
     }
 
     private addHotkeyListeners(): void {
-        const hotkeyKillSwitch = new DeferredPromise<void>();
-        for (const { hotkey, onClick } of this.options) {
-            if (hotkey) {
-                addHotkeyListener(hotkeyKillSwitch, hotkey, onClick);
+        for (const { hotkey, onClick, isDud } of this.options) {
+            if (hotkey && !isDud) {
+                addHotkeyListener(this.deferred.promise, onClick, hotkey);
             }
         }
-        for (const { hotkey, onClick } of this.fullScaleCards) {
-            if (hotkey) {
-                addHotkeyListener(hotkeyKillSwitch, hotkey, onClick);
+        for (const { hotkey, onClick, isDud } of this.fullScaleCards) {
+            if (hotkey && !isDud) {
+                addHotkeyListener(this.deferred.promise, onClick, hotkey);
             }
         }
     }
@@ -136,6 +121,7 @@ export class Prompt {
         if (clear) clearDisplay();
         this.draw();
         this.addHotkeyListeners();
-        return this.deferred.promise;
+        const callback = await this.deferred.promise;
+        await callback();
     }
 }

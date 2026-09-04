@@ -1,17 +1,14 @@
-import { DeferredPromise } from "./deferredPromise.js";
-
 export async function addHotkeyListener(
-    killSwitch: DeferredPromise<void>,
+    waitThenUnlisten: Promise<() => Promise<void>>,
+    onChoose: () => void,
     hotkey: string,
-    f: () => void,
 ) {
     const listener: (e: KeyboardEvent) => void = (e) => {
         if (e.key == hotkey) {
-            killSwitch.resolve();
-            f();
+            onChoose();
         }
     };
     document.addEventListener("keydown", listener);
-    await killSwitch.promise;
+    await waitThenUnlisten;
     document.removeEventListener("keydown", listener);
 }
