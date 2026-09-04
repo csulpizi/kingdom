@@ -9,14 +9,6 @@ import { showMainMenu } from "./dist/actions/mainMenu.js";
 import { Prompt } from "./dist/prompt.js";
 import { coloredName } from "./dist/display/pretty.js";
 
-//FIXME
-import { DeferredPromise } from "./dist/deferredPromise.js";
-const d = new DeferredPromise();
-d.resolve("Hello");
-d.resolve("Goodbye");
-var txt = document.createTextNode(await d.promise);
-document.head.appendChild(txt);
-
 codex.initialize();
 header.initialize();
 
