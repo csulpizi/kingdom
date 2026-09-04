@@ -231,6 +231,8 @@ body {
 
 @media (max-width: 480px) {
 
+    .card-expansion,
+    .card-kingdom,
     .card,
     .card-dud {
         width: 140px;
