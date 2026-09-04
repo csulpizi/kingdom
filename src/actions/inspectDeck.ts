@@ -65,6 +65,7 @@ function showList(message: string, cards: Array<Card>) {
                     isDud: false,
                     dudReason: "",
                     onClick: async () => {},
+                    hotkey: undefined,
                 };
             }),
         );

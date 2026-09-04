@@ -7,6 +7,7 @@ import {
     showOptions,
 } from "./display/display.js";
 import { Card } from "./game/card.js";
+import { addHotkeyListener } from "./hotkeys.js";
 
 export class Prompt {
     private message: string;
@@ -15,12 +16,14 @@ export class Prompt {
         text: string;
         isDud: boolean;
         onClick: () => void;
+        hotkey: string | undefined;
     }> = [];
-    private fullScalecards: Array<{
+    private fullScaleCards: Array<{
         card: Card;
         isDud: boolean;
         dudReason: string;
         onClick: () => void;
+        hotkey: string | undefined;
     }> = [];
 
     protected async resolve(promise: Promise<void>) {
@@ -32,14 +35,18 @@ export class Prompt {
         this.message = message;
     }
 
-    draw(clear: boolean) {
-        if (clear) clearDisplay();
+    draw() {
         showMessage(this.message);
-        showCards(this.fullScalecards);
+        showCards(this.fullScaleCards);
         showOptions(this.options);
     }
 
-    addOption(text: string, isDud: boolean, callback: () => Promise<void>) {
+    addOption(
+        text: string,
+        isDud: boolean,
+        callback: () => Promise<void>,
+        hotkey: string | undefined = undefined,
+    ) {
         const onClick: () => void = () => {
             const promise = callback();
             this.resolve(promise);
@@ -48,6 +55,7 @@ export class Prompt {
             text,
             isDud,
             onClick,
+            hotkey,
         });
     }
 
@@ -55,6 +63,7 @@ export class Prompt {
         cards: Array<Card>,
         callback: (card: Card) => Promise<void>,
         enable?: (card: Card) => { dud: boolean; reason: string },
+        showHotKeys: boolean = false,
     ) {
         for (var i = 0; i < cards.length; i++) {
             const card = <Card>cards[i];
@@ -69,10 +78,12 @@ export class Prompt {
                 const promise = callback(card);
                 this.resolve(promise);
             };
+            const hotkey = showHotKeys ? i + 1 + "" : undefined;
             this.options.push({
                 text: asInline(card, isDud, dudReason),
                 isDud,
                 onClick,
+                hotkey,
             });
         }
     }
@@ -81,6 +92,7 @@ export class Prompt {
         cards: Array<Card>,
         callback: (card: Card) => Promise<void>,
         enable?: (card: Card) => { dud: boolean; reason: string },
+        showHotKeys: boolean = false,
     ) {
         for (var i = 0; i < cards.length; i++) {
             const card = <Card>cards[i];
@@ -91,16 +103,39 @@ export class Prompt {
                 isDud = tup.dud;
                 dudReason = tup.reason;
             }
+            const hotkey = showHotKeys ? i + 1 + "" : undefined;
             const onClick: () => void = () => {
                 const promise = callback(card);
                 this.resolve(promise);
             };
-            this.fullScalecards.push({ card, isDud, dudReason, onClick });
+            this.fullScaleCards.push({
+                card,
+                isDud,
+                dudReason,
+                onClick,
+                hotkey,
+            });
+        }
+    }
+
+    private addHotkeyListeners(): void {
+        const hotkeyKillSwitch = new DeferredPromise<void>();
+        for (const { hotkey, onClick } of this.options) {
+            if (hotkey) {
+                addHotkeyListener(hotkeyKillSwitch, hotkey, onClick);
+            }
+        }
+        for (const { hotkey, onClick } of this.fullScaleCards) {
+            if (hotkey) {
+                addHotkeyListener(hotkeyKillSwitch, hotkey, onClick);
+            }
         }
     }
 
     async invoke(clear: boolean = true): Promise<void> {
-        this.draw(clear);
+        if (clear) clearDisplay();
+        this.draw();
+        this.addHotkeyListeners();
         return this.deferred.promise;
     }
 }

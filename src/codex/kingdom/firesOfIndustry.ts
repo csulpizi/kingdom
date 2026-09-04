@@ -18,14 +18,24 @@ export class FiresOfIndustry extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to [BURN]:");
-        prompt.addInlineCards(Collection.inPlay, async (card) => {
-            card.location = "burn";
-        });
+        prompt.addInlineCards(
+            Collection.inPlay,
+            async (card) => {
+                card.location = "burn";
+            },
+            undefined,
+            true,
+        );
         await prompt.invoke();
         prompt = new Prompt("Choose a second [LAND] to [BURN]:");
-        prompt.addInlineCards(Collection.inPlay, async (card) => {
-            card.location = "burn";
-        });
+        prompt.addInlineCards(
+            Collection.inPlay,
+            async (card) => {
+                card.location = "burn";
+            },
+            undefined,
+            true,
+        );
         await prompt.invoke();
         Game.gainGlory();
     }

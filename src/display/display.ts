@@ -25,16 +25,28 @@ export function showMessage(txt: string) {
 }
 
 export function showOptions(
-    options: Array<{ text: string; isDud: boolean; onClick: () => void }>,
+    options: Array<{
+        text: string;
+        onClick: () => void;
+        hotkey: string | undefined;
+    }>,
 ) {
     const list = document.createElement("div");
     list.className = "option-list";
 
-    for (const { text, isDud, onClick } of options) {
+    for (const { text, onClick, hotkey } of options) {
         const item = document.createElement("div");
-        item.className = isDud ? "option-dud" : "option";
+        item.className = "option";
         item.innerHTML = pretty(text);
-        if (!isDud) item.addEventListener("click", (_) => onClick());
+        item.addEventListener("click", (_) => onClick());
+
+        if (hotkey) {
+            const hotkeyElement = document.createElement("div");
+            hotkeyElement.className = "hotkey-inline";
+            hotkeyElement.innerHTML = hotkey;
+            item.appendChild(hotkeyElement);
+        }
+
         list.appendChild(item);
     }
     transientDisplay.appendChild(list);
@@ -46,13 +58,14 @@ export function showCards(
         isDud: boolean;
         dudReason: string;
         onClick: () => void;
+        hotkey: string | undefined;
     }>,
 ) {
     const list = document.createElement("div");
     list.className = "card-grid";
 
-    for (const { card, isDud, dudReason, onClick } of cards) {
-        const item = cardElement(card, isDud, dudReason);
+    for (const { card, isDud, dudReason, onClick, hotkey } of cards) {
+        const item = cardElement(card, isDud, dudReason, hotkey);
         if (!isDud) item.addEventListener("click", (_) => onClick());
         list.appendChild(item);
     }

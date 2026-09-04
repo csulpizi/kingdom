@@ -1,12 +1,11 @@
 import { Card } from "../game/card.js";
 import { pretty, nFood, nGold, dudSpan, greySpan } from "./pretty.js";
 
-//FIXME: Display 'land'
 export function cardElement(
     card: Card,
     isDud: boolean,
     dudReason: string,
-    hotkey: string = "1",
+    hotkey: string | undefined,
 ) {
     const element = document.createElement("div");
     element.className = isDud ? "card-dud" : "card";
@@ -25,10 +24,12 @@ export function cardElement(
     element.style.backgroundImage = `url("images/${card.art}.png")`;
     element.setAttribute("rarityColor", card.rarity);
 
-    const hotkeyElement = document.createElement("div");
-    hotkeyElement.className = "hotkey";
-    hotkeyElement.innerHTML = hotkey;
-    element.appendChild(hotkeyElement);
+    if (hotkey) {
+        const hotkeyElement = document.createElement("div");
+        hotkeyElement.className = "hotkey-card";
+        hotkeyElement.innerHTML = hotkey;
+        element.appendChild(hotkeyElement);
+    }
 
     return element;
 }
@@ -68,7 +69,6 @@ function conditionalAddTextNode(element: Element, txt: string) {
     element.appendChild(node);
 }
 
-//FIXME: Display 'land'
 export function asInline(
     card: Card,
     isDud: boolean,
@@ -80,6 +80,9 @@ export function asInline(
     s += " - ";
     s += displayCost(card);
     s += " - ";
+    if (card.isLand) {
+        s += "[LAND] - ";
+    }
     s += displayText(card);
     if (card.burns) {
         s += " - ";

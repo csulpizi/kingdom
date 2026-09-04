@@ -18,13 +18,18 @@ export class ExpandKingdom extends Card {
             var prompt = new Prompt(
                 `Add the card to your hand for ${addCost}?:`,
             );
-            prompt.addOption("Yes", false, async () => {
-                Game.gold -= addCost;
-                if (card) {
-                    card.location = "hand";
-                }
-            });
-            prompt.addOption("No", false, noopPromise);
+            prompt.addOption(
+                "Yes",
+                false,
+                async () => {
+                    Game.gold -= addCost;
+                    if (card) {
+                        card.location = "hand";
+                    }
+                },
+                "y",
+            );
+            prompt.addOption("No", false, noopPromise, "n");
             await prompt.invoke();
         }
     }

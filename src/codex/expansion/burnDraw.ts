@@ -22,6 +22,8 @@ export class BurnDraw extends Card {
             async (card) => {
                 card.location = "burn";
             },
+            undefined,
+            true,
         );
         await prompt.invoke();
         Collection.draw(2);

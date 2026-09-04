@@ -25,6 +25,8 @@ export class BurnLand extends Card {
             async (card) => {
                 card.location = "burn";
             },
+            undefined,
+            true,
         );
         await prompt.invoke();
         Game.gold += n;

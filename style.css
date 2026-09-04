@@ -181,6 +181,7 @@ body {
 
 .option {
     margin-bottom: 10px;
+    position: relative;
 }
 
 .card,
@@ -188,6 +189,7 @@ body {
     margin-top: 2px;
     width: 200px;
     height: 200px;
+    position: relative;
 }
 
 .card,
@@ -362,20 +364,33 @@ body {
     Hotkeys
    =========== */
 
-.hotkey {
+.hotkey-inline,
+.hotkey-card {
     border: 1px solid antiquewhite;
     background-color: var(--border);
     font-family: monospace;
     color: antiquewhite;
     display: none;
-    float: right;
     position: absolute;
-    right: 4px;
-    bottom: 4px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
 }
 
+.hotkey-card {
+    bottom: 8px;
+}
+
+.hotkey-inline {
+    top: calc(50% - 8px);
+}
+
+/* only display on non-mobile / non-stylus devices */
 @media (hover: hover) and (pointer: fine) {
-    .hotkey {
+
+    .hotkey-inline,
+    .hotkey-card {
         display: block;
     }
 }

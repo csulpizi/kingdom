@@ -19,9 +19,14 @@ export class DiscardLand extends Card {
     }
     async resolve(): Promise<void> {
         var prompt = new Prompt("Choose a [LAND] to discard:");
-        prompt.addInlineCards(Collection.inPlay, async (card) => {
-            card.location = "graveyard";
-        });
+        prompt.addInlineCards(
+            Collection.inPlay,
+            async (card) => {
+                card.location = "graveyard";
+            },
+            undefined,
+            true,
+        );
         await prompt.invoke();
         Game.gold += this.n;
     }

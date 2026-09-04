@@ -22,6 +22,8 @@ export class Draw extends Card {
             async (card) => {
                 card.location = "graveyard";
             },
+            undefined,
+            true,
         );
         await prompt.invoke();
         Collection.draw(2);

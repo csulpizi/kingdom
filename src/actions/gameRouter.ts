@@ -5,7 +5,7 @@ import { endTurnAction } from "./endturn.js";
 export async function promptPlayerActions(): Promise<void> {
     var prompt = new Prompt("Choose an action:");
     addCardActions(prompt);
-    prompt.addOption("End turn", false, endTurnAction);
+    prompt.addOption("End turn", false, endTurnAction, "e");
     await prompt.invoke();
 }
 
@@ -17,5 +17,6 @@ function addCardActions(prompt: Prompt) {
             const { playable, reason } = card.canPlay();
             return { dud: !playable, reason };
         },
+        true,
     );
 }

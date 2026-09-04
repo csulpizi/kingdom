@@ -118,12 +118,12 @@ class CollectionObj {
             log("[DISCOVER]ed " + coloredName(clone.name));
             output.resolve(clone);
         };
-        prompt.addFullscaleCards(choices, cardCallback);
+        prompt.addFullscaleCards(choices, cardCallback, undefined, true);
         var cancelCallback = () => {
             output.resolve(null);
             return noopPromise();
         };
-        prompt.addOption("Take nothing", false, cancelCallback);
+        prompt.addOption("Take nothing", false, cancelCallback, "q");
         await prompt.invoke();
         return output.promise;
     }

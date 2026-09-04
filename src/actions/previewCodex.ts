@@ -34,6 +34,7 @@ export async function previewCodex() {
                 isDud: false,
                 dudReason: "",
                 onClick: async () => {},
+                hotkey: undefined,
             };
         }),
     );

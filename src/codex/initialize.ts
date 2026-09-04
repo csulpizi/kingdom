@@ -19,8 +19,9 @@ import { EminentDomain } from "./expansion/eminentDomain.js";
 import { ExpandKingdom } from "./expansion/expandKingdom.js";
 import { Forge } from "./expansion/forge.js";
 import { GainGold } from "./expansion/gainGold.js";
-import { Industry } from "./expansion/industry.js";
+import { GoldDraw } from "./expansion/goldDraw.js";
 import { GoldLandPlus } from "./expansion/goldLandPlus.js";
+import { Industry } from "./expansion/industry.js";
 import { InnovateLandDiscard } from "./expansion/innovateLandDiscard.js";
 import { KingdomToHand } from "./expansion/kingdomToHand.js";
 import { Ritual } from "./expansion/ritual.js";
@@ -58,6 +59,7 @@ export function initialize() {
     Collection.add(new ExpandKingdom());
     Collection.add(new Forge());
     Collection.add(new GainGold());
+    Collection.add(new GoldDraw());
     Collection.add(new GoldLandPlus());
     Collection.add(new Industry());
     Collection.add(new InnovateLandDiscard());
