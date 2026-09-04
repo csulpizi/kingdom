@@ -50,6 +50,22 @@ export async function showHowToPlay() {
         `<p>Certain cards let you [DISCOVER] either [EXPANSION] or [KINGDOM] cards. You are given the choice between 2 of those cards to add to your deck. When a card is [DISCOVER]ed, it goes into your graveyard unless otherwise specified.</p>`,
     );
 
+    display.showMessage(
+        `<h3>Anatomy of a Card</h3>`
+    );
+    display.showMessage(
+        '<div>' +
+        '<img src="images/card_sample.png" class="demo-card">' + 
+        '<ul>' +
+        '<li>1. Card name. "Ascend"</li>' +
+        '<li>2. Cost. 2[FOOD] and and 4[GOLD]</li>' +
+        '<li>3. Effect</li>' +
+        '<li>4. Outline. In this case the green outline shows that it is a [EXPANSION] card. Blue indicates it is a [KINGDOM] card</li>' +
+        '<li>5. Hotkey (Desktop only). You can play this card by pressing the shown keyboard key instead of clicking on it</li>' +
+        '</ul>' +
+        '</div>'
+    );
+
     display.showMessage(pretty.coloredName("<h3>Hints</h3>"));
     display.showMessage(`<ul>`);
     display.showMessage(
