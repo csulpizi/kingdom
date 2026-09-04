@@ -2,7 +2,12 @@ import { Card } from "../game/card.js";
 import { pretty, nFood, nGold, dudSpan, greySpan } from "./pretty.js";
 
 //FIXME: Display 'land'
-export function cardElement(card: Card, isDud: boolean, dudReason: string) {
+export function cardElement(
+    card: Card,
+    isDud: boolean,
+    dudReason: string,
+    hotkey: string = "1",
+) {
     const element = document.createElement("div");
     element.className = isDud ? "card-dud" : "card";
     for (const txt of [
@@ -19,6 +24,12 @@ export function cardElement(card: Card, isDud: boolean, dudReason: string) {
     }
     element.style.backgroundImage = `url("images/${card.art}.png")`;
     element.setAttribute("rarityColor", card.rarity);
+
+    const hotkeyElement = document.createElement("div");
+    hotkeyElement.className = "hotkey";
+    hotkeyElement.innerHTML = hotkey;
+    element.appendChild(hotkeyElement);
+
     return element;
 }
 
