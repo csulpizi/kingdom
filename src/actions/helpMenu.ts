@@ -4,7 +4,6 @@ import { showHowToPlay } from "./howToPlay.js";
 import * as display from "../display/display.js";
 import * as lands from "../display/landsInPlay.js";
 import * as header from "../display/header.js";
-import { previewCodex } from "./previewCodex.js";
 import * as inspect from "./inspectDeck.js";
 
 const helpButton = <HTMLElement>document.getElementsByName("helpbutton")[0];

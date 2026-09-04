@@ -62,7 +62,7 @@ html,
 body {
     margin: 0;
     height: 100%;
-    background-color: var(--background)
+    background-color: var(--background);
 }
 
 /* ===========
@@ -188,8 +188,8 @@ body {
 .card,
 .card-dud {
     margin-top: 2px;
-    height: 200px;
     width: 200px;
+    height: 200px;
 }
 
 .card,
@@ -219,6 +219,20 @@ body {
 .card-dud span {
     color: var(--c-grey-2) !important;
 }
+
+@media (max-width: 480px) {
+
+    .card,
+    .card-dud {
+        width: 140px;
+        height: 140px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
 
 /* ===========
     Right bar
